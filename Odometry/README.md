@@ -1,4 +1,4 @@
-# Odometry_FBOT
+# Odometria
 Implementação de odometria para localizar o robo no ev3dev2
 
 # TO - DO

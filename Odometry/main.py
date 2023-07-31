@@ -12,39 +12,43 @@ from ev3dev2.sensor.lego import *  # importando tudo da biblioteca ev3dev2.senso
 #from ev3dev2.sensor.virtual import * # importando tudo da biblioteca ev3dev2.sensor.virtual
 
 from odometry import Odometry # importando tudo da biblioteca odometry
-from utils import * # importando tudo da biblioteca utils
-#from robot import * # importando tudo da biblioteca robot
+from robot import Robot # importando tudo da biblioteca utils
 
+# Parametros
+motor_esquerdo = OUTPUT_A
+motor_direito = OUTPUT_B
 
-robot = Robot(OUTPUT_A, OUTPUT_B, 13, 6.88) # setando o comando robot para utilizar  as saidas OUTPU_A e OUTPUT_B
-pos = Odometry(OUTPUT_A, OUTPUT_B, 6.88, 13, 360,360, debug=True)
+diametro_roda = 6.88
+diatancia_roda = 13
+
+robot = Robot(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda) # setando o comando robot para utilizar  as saidas OUTPU_A e OUTPUT_B
+pos = Odometry(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda, 360, 360, debug=True)
 
 # ----irec------ Configura os sensores
 
 InfraredSensor.mode = 'IR-PROX' # modo do sensor de infravermelho por aproximação
 
 # ---------- Sensores do primeiro Brick
-color_sensor_in1 = ColorSensor(INPUT_1)  # setando sensor de cor na entrada in1
-color_sensor_in1.mode = 'COL-COLOR' # modo do sensor de cor RGB
+color_sensor_esq = ColorSensor(INPUT_1)  # setando sensor de cor na entrada in1
+color_sensor_esq.mode = 'COL-COLOR' # modo do sensor de cor RGB
 
-color_sensor_in2 = ColorSensor(INPUT_2)  # setando sensor de cor na entrada in2
-color_sensor_in2.mode = 'COL-COLOR' # modo do sensor de cor RGB
+color_sensor_dir = ColorSensor(INPUT_2)  # setando sensor de cor na entrada in2
+color_sensor_dir.mode = 'COL-COLOR' # modo do sensor de cor RGB
 
-ultrasonic_sensor_in3 = UltrasonicSensor(INPUT_3)  # setando sensor ultrassonico na entrada in3
-ultrasonic_sensor_in3.mode = 'US-DIST-CM' # modo do sensor ultrasonico em cm
+ultrasonic_sensor = UltrasonicSensor(INPUT_3)  # setando sensor ultrassonico na entrada in3
+ultrasonic_sensor.mode = 'US-DIST-CM' # modo do sensor ultrasonico em cm
 
 robot._gyro = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
 _gyro = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
 
 cont = 0
-# pen = Pen(INPUT_5)
-# pen.down()
 
 while True:
     print(pos.get_pos())
     direction = 90 * cont
-    robot.move(75,direction,35)
+    robot.move(75,direction,20)
     sleep(1)
-    # # robot.rotate(90,100,20)
-    # # sleep(0.5)
-    # # cont += 1
+    cont += 1
+    # robot.rotate(90,100,20)
+    # sleep(1)
+    # cont += 1
