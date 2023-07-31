@@ -5,7 +5,7 @@ import time
 
 
 class Odometry:
-    def __init__(self, left=None, right=None, wheel_diameter=5.6, wheel_distance=15.2, count_per_rot_left=None, count_per_rot_right=None, debug=False) -> None:
+    def __init__(self, left=None, right=None, wheel_diameter=6.88, wheel_distance=13, count_per_rot_left=None, count_per_rot_right=None, debug=False) -> None:
 
         #motores
         self.left_motor = LargeMotor(left)
