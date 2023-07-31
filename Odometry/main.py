@@ -36,14 +36,15 @@ robot._gyro = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
 _gyro = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
 
 cont = 0
-pen = Pen(INPUT_5)
-pen.down()
+# pen = Pen(INPUT_5)
+# pen.down()
 
 while True:
     print(pos.get_pos())
     direction = 90 * cont
-    robot.move(75,direction,35)
+    robot.move(75,direction,5)
     sleep(0.5)
-    robot.rotate(90,100,20)
-    sleep(0.5)
-    cont += 1
+    cont += 1 #linha de codigo inserida
+    # # robot.rotate(90,100,20)
+    # # sleep(0.5)
+    # # cont += 1
