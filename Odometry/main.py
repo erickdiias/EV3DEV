@@ -17,7 +17,7 @@ from time import sleep #importando sleep da biblioteca time
 
 robot = Robot(OUTPUT_A,OUTPUT_B) # setando o comando robot para utilizar  as saidas OUTPU_A e OUTPUT_B
 pos = Odometry(OUTPUT_A,OUTPUT_B,5.6,15.2,360,360,debug=True)
-robot._gyro = GyroSensor(INPUT_3)
+robot._gyro = GyroSensor(INPUT_4)
 cont = 0
 pen = Pen(INPUT_5)
 pen.down()

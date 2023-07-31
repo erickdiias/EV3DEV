@@ -73,6 +73,6 @@ class Odometry:
     def log_pos(self):
         x, y, theta = self.get_pos()
         if self.debug:
-            print(f"x: {x} y: {y} theta: {theta}")
+            print('oi')
         else:
             raise Exception("Debug mode is not enabled")
