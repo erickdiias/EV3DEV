@@ -41,8 +41,8 @@ color_sensor_in2.mode = 'COL-COLOR' # modo do sensor de cor RGB
 ultrasonic_sensor_in3 = UltrasonicSensor(INPUT_3)  # setando sensor ultrassonico na entrada in3
 ultrasonic_sensor_in3.mode = 'US-DIST-CM' # modo do sensor ultrasonico em cm
 
-gyro_sensor_in4 = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
-gyro_sensor_in4.mode = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
+_gyro = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
+_gyro = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
 
 
 # ---------- Aqui é onde seus codigos começam
@@ -55,12 +55,12 @@ def corrigir_alinhamento_sensor_cor():
     if color_sensor_in1.color == 5 and color_sensor_in2 == 6:
         while color_sensor_in2 == 6:
             tank_drive.on(0,2)
-        gyro_sensor_in4.reset() # Reset no sensor de gyro para o vaor de zero
+        _gyro.reset() # Reset no sensor de gyro para o vaor de zero
 
     elif color_sensor_in1.color == 6 and color_sensor_in2 == 5:
         while color_sensor_in1 == 6:
             tank_drive.on(2,0)
-        gyro_sensor_in4.reset() # Reset no sensor de gyro para o vaor de zero
+        _gyro.reset() # Reset no sensor de gyro para o vaor de zero
     
 def localizar_zona_azul():
     
@@ -71,25 +71,25 @@ def localizar_zona_azul():
             
         elif color_sensor_in1.color == 1 or color_sensor_in1.color == 4: # Verifica se o sensor1 não está lendo preto ou amarelo
             tank_drive.on_for_seconds(-5,-5,5) # Movimenta o motorA e motorB por 5segundos para trás
-            while gyro_sensor_in4.angle < 90: # Enquanto o sensor de gyro estiver menor que 90
+            while _gyro.angle < 90: # Enquanto o sensor de gyro estiver menor que 90
                 tank_drive.on(5,-5) # Movimenta o motorA e o motorB em direções opostas para esquerda
-            gyro_sensor_in4.reset() # Reseta o valor do sensor de gyro par 0 graus
+            _gyro.reset() # Reseta o valor do sensor de gyro par 0 graus
             
         elif color_sensor_in1.color == 5 and color_sensor_in2.color == 5: # Os dois sensores e cor então alinhados e identificando a mesma cor
             tank_drive.on_for_seconds(-5,-5,5) # O motorA emotor B vão se movimentar por 5seg para trás
-            while gyro_sensor_in4.angle < 180: # Enquanto o o sensor de gyro identificar que o valor do angulo é menor que 180 graus ele gira  
+            while _gyro.angle < 180: # Enquanto o o sensor de gyro identificar que o valor do angulo é menor que 180 graus ele gira  
                 tank_drive.on(5,-5) # MotorA e motorB se movimentam em direções opostas 
-            gyro_sensor_in4.reset() # Reset no sensor de gyro para o vaor de zero
+            _gyro.reset() # Reset no sensor de gyro para o vaor de zero
 
         elif color_sensor_in1.color == 5 and color_sensor_in2 == 6:
             while color_sensor_in2 == 6:
                 tank_drive.on(0,2)
-            gyro_sensor_in4.reset() # Reset no sensor de gyro para o vaor de zero
+            _gyro.reset() # Reset no sensor de gyro para o vaor de zero
 
         elif color_sensor_in1.color == 6 and color_sensor_in2 == 5:
             while color_sensor_in1 == 6:
                 tank_drive.on(2,0)
-            gyro_sensor_in4.reset() # Reset no sensor de gyro para o vaor de zero
+            _gyro.reset() # Reset no sensor de gyro para o vaor de zero
 
     tank_drive.off()
 
