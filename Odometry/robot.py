@@ -4,80 +4,8 @@ from ev3dev2.sensor.lego import *
 import math
 import time
 
-class Encoder(LargeMotor):
-    def __init__(self,ticks_p_revol, radius,port=None):
-        LargeMotor.__init__(self,port)
-        self.counter = 0
-        self.ticks_p_revol = ticks_p_revol
-        self.radius = radius
-        
-
-    def count(self):
-        self.counter += 1
-    
-    def reset(self):
-        self.counter = 0
-
-
-class Odometry:
-    def __init__(self,left_encoder,right_encoder,L,debug=False) -> None:
-        self.left_encoder = left_encoder
-        self.right_encoder = right_encoder
-        self.L = L
-        self.debug = debug
-
-        self.left_wheel_last_count = 0
-        self.right_wheel_last_count = 0
-
-        self.x = 0
-        self.y = 0
-        self.theta = 0
-
-        self.meters_per_tick_left = 2 * math.pi * self.left_encoder.radius / self.left_encoder.ticks_p_revol
-        self.meters_per_tick_right = 2 * math.pi * self.right_encoder.radius / self.right_encoder.ticks_p_revol
-    
-    def step(self,left_direction=1,right_direction=1):
-        delta_ticks_left = (self.left_encoder.position - self.left_wheel_last_count) * left_direction
-        delta_ticks_right = (self.right_encoder.position - self.right_wheel_last_count) * right_direction
-
-        self.left_wheel_last_count = self.left_encoder.position
-        self.right_wheel_last_count = self.right_encoder.position
-
-
-        DR = self.meters_per_tick_right * delta_ticks_right
-        DL = self.meters_per_tick_left * delta_ticks_left
-        D = (DR + DL) / 2
-
-
-        x_dt = D * math.cos(self.theta)
-        y_dt = D * math.sin(self.theta)
-        theta_dt = (DR - DL) / self.L
-
-        self.x = self.x + x_dt
-        self.y = self.y + y_dt
-        self.theta = self.theta + theta_dt
-
-        return self.x, self.y, self.theta
-    
-    def reset(self):
-        self.x = 0
-        self.y = 0
-        self.theta = 0
-    
-    def get_pos(self):
-        return self.x, self.y, self.theta
-    
-    def log_pos(self):
-        if self.debug:
-            print(f'x: {self.x} y: {self.y} theta: {self.theta}')
-        else:
-            raise Exception('Debug mode is not enabled')
-
-
-
-
 class Robot(MoveSteering):
-    def __init__(self, left_motor_port, right_motor_port, wheel_distance=15.2, wheel_diam=5.6, desc=None, motor_class=LargeMotor):
+    def __init__(self, left_motor_port=None, right_motor_port=None, wheel_distance=None, wheel_diam=None, desc=None, motor_class=LargeMotor):
         MoveSteering.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
         #Medidas do robo e rodas
         self.wheel_distance = wheel_distance  # Distância entre as rodas do robô
@@ -88,18 +16,11 @@ class Robot(MoveSteering):
         
 
         # GYRO
-        self._gyro = None  # Sensor giroscópio
+        self._gyro = None  # Sensor giroscópio (não está implementado no código fornecido)
 
 
         self.left_motor = LargeMotor(left_motor_port)  # Motor esquerdo
         self.right_motor = LargeMotor(right_motor_port)  # Motor direito
-
-
-        #Odometria
-        self.left_encoder = Encoder(self.left_motor.count_per_rot, self.wheel_radius,port=left_motor_port)
-        self.right_encoder = Encoder(self.right_motor.count_per_rot, self.wheel_radius,port=right_motor_port)
-        self.odometry = Odometry(self.left_encoder, self.right_encoder, self.wheel_distance)
-
 
     def on_for_distance(self, steering, speed, distance, brake=True, block=True):
         rotations = distance / self.wheel_circumference  # Número de rotações necessárias para percorrer a distância
@@ -124,11 +45,4 @@ class Robot(MoveSteering):
             MoveSteering.stop(self)  # Para o movimento do robô
 
         else:
-            raise NotImplementedError("Não implementado")  # Lança uma exceção se o uso do giroscópio não estiver implementado  
-    
-
-    def on_to_coordinates(self):
-        pass
-
-    def kalmmam_filter(self):
-        pass
+            raise NotImplementedError("Não implementado")  # Lança uma exceção se o uso do giroscópio não estiver implementado
