@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+# ---------- Importa as bibliotecas necessarias
 import time
 import math
 from ev3dev2.motor import *
@@ -14,7 +17,7 @@ from time import sleep
 
 robot = Robot(OUTPUT_A,OUTPUT_B)
 pos = Odometry(OUTPUT_A,OUTPUT_B,5.6,15.2,360,360,debug=True)
-robot._gyro  = GyroSensor(INPUT_3)
+robot._gyro = GyroSensor(INPUT_3)
 cont = 0
 pen = Pen(INPUT_5)
 pen.down()
