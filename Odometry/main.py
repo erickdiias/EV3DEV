@@ -8,10 +8,10 @@ from ev3dev2.sound import Sound # importando o som da biblioteca ev3dev2.sound
 from ev3dev2.button import Button # importando os botoes da biblioteca ev3dev2.button
 from ev3dev2.sensor import * # importando tudo da biblioteca ev3dev2.sensor
 from ev3dev2.sensor.lego import *  # importando tudo da biblioteca ev3dev2.sensor.lego
-from ev3dev2.sensor.virtual import * # importando tudo da biblioteca ev3dev2.sensor.virtual
+#from ev3dev2.sensor.virtual import * # importando tudo da biblioteca ev3dev2.sensor.virtual
 from odometry import Odometry # importando tudo da biblioteca odometry
 from utils import * # importando tudo da biblioteca utils
-#from robot import *
+#from robot import * # importando tudo da biblioteca robot
 from time import sleep #importando sleep da biblioteca time
 
 
