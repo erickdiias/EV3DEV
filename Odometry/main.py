@@ -14,17 +14,17 @@ from ev3dev2.sensor.lego import *  # importando tudo da biblioteca ev3dev2.senso
 from odometry import Odometry # importando tudo da biblioteca odometry
 from robot import Robot # importando tudo da biblioteca utils
 
-# Parametros
-motor_esquerdo = OUTPUT_A
-motor_direito = OUTPUT_B
+# ---------- Parametros
+motor_esquerdo = OUTPUT_A # setando motor_esquerdo como saída OUTPUT_A
+motor_direito = OUTPUT_B # setando motor_direito como saída OUTPUT_B
 
-diametro_roda = 6.88
-diatancia_roda = 13
+diametro_roda = 6.88 # setando o valor do diamentro da roda 
+diatancia_roda = 13 # setando o valor da distancia entre os centro das rodas
 
 robot = Robot(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda) # setando o comando robot para utilizar  as saidas OUTPU_A e OUTPUT_B
 pos = Odometry(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda, 360, 360, debug=True)
 
-# ----irec------ Configura os sensores
+# ---------- Configura os sensores
 
 InfraredSensor.mode = 'IR-PROX' # modo do sensor de infravermelho por aproximação
 
