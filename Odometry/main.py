@@ -22,7 +22,7 @@ diametro_roda = 6.88 # setando o valor do diamentro da roda
 diatancia_roda = 13 # setando o valor da distancia entre os centro das rodas
 
 robot = Robot(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda) # setando o comando robot para utilizar  as saidas OUTPU_A e OUTPUT_B
-pos = Odometry(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda, 360, 360, debug=True)
+odometry = Odometry(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda, 360, 360, debug=True)
 
 # ---------- Configura os sensores
 
@@ -39,12 +39,12 @@ ultrasonic_sensor = UltrasonicSensor(INPUT_3)  # setando sensor ultrassonico na 
 ultrasonic_sensor.mode = 'US-DIST-CM' # modo do sensor ultrasonico em cm
 
 robot._gyro = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
-_gyro = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
+_gyro.mode = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
 
 cont = 0
 
 while True:
-    print(pos.get_pos())
+    print(odometry.get_pos())
     direction = 90 * cont
     robot.move(75,direction,20)
     sleep(1)
