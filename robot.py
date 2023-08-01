@@ -7,7 +7,8 @@ import time
 class Robot(MoveSteering):
     def __init__(self, left_motor_port=None, right_motor_port=None, wheel_diam=None, wheel_distance=None, desc=None, motor_class=LargeMotor):
         MoveSteering.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
-        #Medidas do robo e rodas
+        
+        # Medidas do robo e rodas
         self.wheel_distance = wheel_distance  # Distância entre as rodas do robô
         self.wheel_diam = wheel_diam  # Diâmetro das rodas do robô
         self.wheel_radius = wheel_diam / 2  # Raio das rodas do robô
