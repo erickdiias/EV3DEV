@@ -68,7 +68,8 @@ class Odometry:
         self.y = self.y + y_dt  # Atualiza a posição y
         self.theta = self.theta + theta_dt  # Atualiza o ângulo de rotação
 
-        return self.x, self.y, self.theta
+        #return self.x, self.y, self.theta
+        return "x = {:,.2f}".format(self.x), "y = {:,.2f}".format(self.y), "theta = {:,.2f}".format(self.theta)
 
     def log_pos(self):
         x, y, theta = self.get_pos()
