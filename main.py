@@ -26,7 +26,7 @@ odometry = Odometry(motor_esquerdo, motor_direito, diametro_roda, diatancia_roda
 
 # ---------- Configura os sensores
 
-InfraredSensor.mode = 'IR-PROX' # modo do sensor de infravermelho por aproximação
+#InfraredSensor.mode = 'IR-PROX' # modo do sensor de infravermelho por aproximação
 
 # ---------- Sensores do primeiro Brick
 color_sensor_esq = ColorSensor(INPUT_1)  # setando sensor de cor na entrada in1
