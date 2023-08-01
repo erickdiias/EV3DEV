@@ -39,7 +39,7 @@ ultrasonic_sensor = UltrasonicSensor(INPUT_3)  # setando sensor ultrassonico na 
 ultrasonic_sensor.mode = 'US-DIST-CM' # modo do sensor ultrasonico em cm
 
 robot._gyro = GyroSensor(INPUT_4) # setando o sensor de giro na entra in4
-_gyro.mode = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
+robot._gyro.mode = 'GYRO-ANG' # modo do sensor gyroscopio em angulhos
 
 cont = 0
 
