@@ -4,10 +4,12 @@
 import termios, tty, sys, time
 from ev3dev2.motor import *
 from threading import *
+from ev3dev2.sound import Sound # importando o som da biblioteca ev3dev2.sound
 
+sound = Sound() # Setando a variavel som
 
-motor_right = LargeMotor('outA')
-motor_left = LargeMotor('outB')
+motor_right = LargeMotor('outB')
+motor_left = LargeMotor('outC')
 
 
 def getch():
@@ -20,32 +22,38 @@ def getch():
     return ch
 
 def forward():
+    sound.speak('forward')
     motor_left.run_forever(speed_sp=400)
     motor_right.run_forever(speed_sp=400)
-
+    
 #==============================================
 
 def back():
+    sound.speak('back')
     motor_left.run_forever(speed_sp=-400)
     motor_right.run_forever(speed_sp=-400)
-
+    
 #==============================================
 
 def left():
+    sound.speak('left')
     motor_left.run_forever(speed_sp=-200)
     motor_right.run_forever(speed_sp=200)
-
+    
 #==============================================
 
 def right():
+    sound.speak('right')
     motor_left.run_forever(speed_sp=200)
     motor_right.run_forever(speed_sp=-200)
-
+    
 #==============================================
 
 def stop():
+    sound.speak('stop')
     motor_left.run_forever(speed_sp=0)
     motor_right.run_forever(speed_sp=0)
+    
 #==============================================
 
 while True:
