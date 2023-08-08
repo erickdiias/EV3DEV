@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from ev3dev2.motor import * # importando tudo da biblioteca ev3dev2.motor
-from odometria_ import _odometria
+from odometria import _odometria
 from time import sleep
 
 
